@@ -1,0 +1,73 @@
+.wrapper {
+  height: 96vh;
+  width: 98vw;
+  margin: 2vh 1vw;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin: 10px 10px;
+}
+
+.getUnlockKeyBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 20px 0;
+}
+.requestControlBlock {
+  display: flex;
+  flex-direction: column;
+}
+.requestText {
+  height: 270px;
+  width: 35vw;
+}
+.requestText textarea {
+  resize: none;
+  width: 30vw;
+  height: 220px;
+}
+
+.getRequestBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.resultBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20px 20px 0;
+}
+.resultBlock mat-form-field {
+  width: 40vw;
+  height: 300px;
+  // border: 1px solid red;
+}
+.resultBlock .imageBlock {
+  width: 40vw;
+  height: 280px;
+  border: 1px solid;
+  padding-top: 12px;
+}
+.resultBlock .imageBlock img {
+  margin-left: calc(20vw - 128px);
+}
+.resultBlock textarea {
+  resize: none;
+  height: 250px;
+}
+
+.processing {
+  position: absolute;
+  padding: 20px;
+  left: calc(50vw - 85px);
+  top: calc(50vh - 85px);
+  background-color: #f8f8f8;
+  z-index: 100;
+}
+
