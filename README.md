@@ -4,7 +4,7 @@
 
 ![the app...](src/assets/aidemo.png)
 
-**AI... Whatever you may thnk of AI, it is the latest buzz in tech. As professional developers we really need to have at least a cursory idea about what AI is. One way to expore this is to incorporate OpenAI's API into our code. We can then use it in our own apps. This is a great way to learn some of the possibilites of AI without having to write our own engines. It's pretty easy: open an API account, generate some API keys, npm install openai, start writing code. Learning to talk to OpenAI so as to get exactly the output you want is not simple - it involves learning how to tune your prompts, provide examples, choose the correct output model, and more...**
+**AI... Whatever you may thnk of AI, it is the latest buzz in tech. As professional developers we really need to have at least a cursory idea about what AI is. One way to explore this is to incorporate OpenAI's API into our code. We can then use it in our own apps. This is a great way to learn some of the possibilites of AI without having to write our own engines. It's pretty easy: open an API account, generate some API keys, npm install openai, start writing code. Learning to talk to OpenAI so as to get exactly the output you want is not simple - it involves learning how to tune your prompts, provide examples, choose the correct output model, and more...**
 
 **This app is a simple gateway into exploring these ideas. The OpenAI API is promise-based so it works very well with 'async / await in javascript or typescript. Most everything you need to get started is in the README.md inside of node_modules/openai/**
 
