@@ -25,14 +25,14 @@
 
 ![the app...](src/assets/aidemo3.png)
 
-**This is a completion for the prompt: "in 50 words or less as a numbered list how to do the chicken dance'.**
+**This is a completion for the prompt: "in 50 words or less as a numbered list how to do the chicken dance".**
 **The response gives the date, completion type, finish_reason ('stop' is OK, 'length' is not enough tokens), and token usage."**
 
 ### An Image Completion:
 
 ![the app...](src/assets/aidemo4.png)
 
-**This is an image for the prompt: ""still life with a pewter pitcher and pewter goblet on a small table in the style of Braque.**
+**This is an image for the prompt: "still life with a pewter pitcher and pewter goblet on a small table in the style of Braque".**
 
 
 **This app is built for using my VPS server to obfuscate my API_KEY. The code for testing within an Angular app without having to setup a separate server is included, but commented out. You basically just swap the comments to run locally and make sure your API obj has the 'dangerouslyAllowBrowser' flag:**
