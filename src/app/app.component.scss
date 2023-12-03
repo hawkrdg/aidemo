@@ -1,7 +1,13 @@
 .wrapper {
   height: 96vh;
   width: 98vw;
+  min-width: 960px;
+  overflow: clip;
   margin: 2vh 1vw;
+}
+
+mat-sidenav-content {
+  overflow: clip;
 }
 
 .hidden {
@@ -9,27 +15,55 @@
 }
 
 button {
-  margin: 10px 10px;
+  width: 140px;
+  margin: 0 10px;
+}
+.mdc-icon-button {
+  width: 36px !important;
 }
 
-.getUnlockKeyBlock {
+.getInputBlock {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   margin: 20px 20px 0;
 }
-.requestControlBlock {
+.getInputBlock button {
+  width: 180px;
+  margin-bottom: 20px;
+}
+.inputControlBlock {
   display: flex;
   flex-direction: column;
 }
+.requestControlBlock, .responseControlBlock {
+  position: absolute;
+  left: 20px;
+  top: 80px;
+  width: 400px;
+  padding: 25px;
+  z-index: 100;
+  background-color: #e8e8e8;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+}
+.requestControlBlock button, .responseControlBlock button {
+  margin: 0 auto;
+  width: 100px;
+}
+.requestControlBlock mat-form-field, .responseControlBlock mat-form-field {
+  width: 300px;
+}
+
 .requestText {
-  height: 270px;
-  width: 35vw;
+  height: 120px;
+  width: 60vw;
 }
 .requestText textarea {
   resize: none;
-  width: 30vw;
-  height: 220px;
+  height: 80px;
+  overflow: auto;
 }
 
 .getRequestBlock {
@@ -40,26 +74,25 @@ button {
 .resultBlock {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   margin: 20px 20px 0;
 }
 .resultBlock mat-form-field {
-  width: 40vw;
-  height: 300px;
+  width: 512px;
+  height: 512px;
   // border: 1px solid red;
 }
 .resultBlock .imageBlock {
-  width: 40vw;
-  height: 280px;
+  width: 512px;
+  height: 512px;
   border: 1px solid;
-  padding-top: 12px;
 }
-.resultBlock .imageBlock img {
-  margin-left: calc(20vw - 128px);
-}
+// .resultBlock .imageBlock img {
+//   margin-left: calc(20vw - 128px);
+// }
 .resultBlock textarea {
   resize: none;
-  height: 250px;
+  height: 480px;
 }
 
 .processing {

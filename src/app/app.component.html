@@ -2,12 +2,28 @@
 
   <mat-toolbar color="primary">{{title}}</mat-toolbar>
 
-  <div class="getUnlockKeyBlock">
-    <div class="requestControlBlock">
-      <mat-form-field class="unlockKeyText" appearance="outline" color="primary">
-        <mat-label>Enter 'UNLOCK KEY'...</mat-label>
-        <input matInput type="password" [(ngModel)]="unlockKey">
-      </mat-form-field>
+  <div class="getInputBlock">
+    <div class="inputControlBlock">
+      <button mat-raised-button class="" color="accent" matTooltip="Setup Request Paramters..."
+                (click)="showParameters = true">Setup Parameters</button>
+      <button mat-raised-button class="" color="accent" matTooltip="Show Results..."
+                (click)="showResults = true">Show Results</button>
+    </div>
+
+    <div class="requestControlBlock" [@fade]="showParameters ? 'visible' : 'hidden'"
+              (@fade.done)="txtUnlockKey.focus()" (keyup.enter)="showParameters = false">
+      <div>
+        <mat-form-field class="unlockKeyText" appearance="outline" color="primary">
+          <mat-label>Enter 'UNLOCK KEY'...</mat-label>
+          <input #txtUnlockKey matInput [type]="pwType" [(ngModel)]="unlockKey">
+        </mat-form-field>
+
+        <button mat-icon-button [matTooltip]="pwType === 'password' ? 'Show password...' : 'Hide password'" 
+                (click)="pwType = pwType === 'password' ? 'text' : 'password'">
+          <mat-icon *ngIf="pwType === 'text'">visibility_off</mat-icon>
+          <mat-icon *ngIf="pwType === 'password'">visibility_on</mat-icon>
+        </button>
+      </div>
 
       <mat-label>Temperature:</mat-label>
       <mat-slider discrete min="0.0" max="1.0" step="0.1">
@@ -24,16 +40,62 @@
         <input matSliderThumb [(ngModel)]="presence_penalty">
       </mat-slider>
               
+      <mat-label>Max Tokens:</mat-label>
+      <mat-slider discrete min="8" max="1000" step="4">
+        <input matSliderThumb [(ngModel)]="max_tokens">
+      </mat-slider>
+
+      <button mat-raised-button class="" color="accent" matTooltip="Close Parameters Window..."
+                (click)="showParameters = false">Finished</button>
     </div>
 
-    <mat-form-field class="requestText" appearance="outline" color="primary">
-      <mat-label>Request a new idea...</mat-label>
-      <textarea matInput [(ngModel)]="textPrompt"></textarea>
-    </mat-form-field>
+    <div class="responseControlBlock" [@fade]="showResults ? 'visible' : 'hidden'"
+                (@fade.done)="btnCloseResults.focus()">
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="completionCreated">
+        <mat-label>Created:</mat-label>
+        <input matInput #txtCreated [ngModel]="completionCreated" readonly="true">
+      </mat-form-field>
 
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="imageFormat">
+        <mat-label>Image Type:</mat-label>
+        <input matInput [ngModel]="imageFormat" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.object">
+        <mat-label>Object Type:</mat-label>
+        <input matInput [ngModel]="currentResult.object" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.id">
+        <mat-label>Object ID:</mat-label>
+        <input matInput [ngModel]="currentResult.id" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.model">
+        <mat-label>Model:</mat-label>
+        <input matInput [ngModel]="currentResult.model" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.finish_reason">
+        <mat-label>Finish Reason:</mat-label>
+        <input matInput [ngModel]="currentResult.finish_reason" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.total_tokens">
+        <mat-label>Total Tokens:</mat-label>
+        <input matInput [ngModel]="currentResult.total_tokens" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.prompt_tokens">
+        <mat-label>Prompt Tokens:</mat-label>
+        <input matInput [ngModel]="currentResult.prompt_tokens" readonly="true">
+      </mat-form-field>
+      <mat-form-field class="" appearance="outline" color="primary" *ngIf="currentResult.completion_tokens">
+        <mat-label>Completion Tokens:</mat-label>
+        <input matInput [ngModel]="currentResult.completion_tokens" readonly="true">
+      </mat-form-field>
+
+      <button #btnCloseResults mat-raised-button class="" color="accent" matTooltip="Close Paramters Window..."
+                (click)="showResults = false">Finished</button>
+    </div>
+    <div class="spacer20"></div>
     <mat-form-field class="requestText" appearance="outline" color="primary">
-      <mat-label>Request a new picture...</mat-label>
-      <textarea matInput [(ngModel)]="imagePrompt"></textarea>
+      <mat-label>Create a 'Prompt'...</mat-label>
+      <textarea matInput [(ngModel)]="textPrompt"></textarea>
     </mat-form-field>
   </div>
 
@@ -47,13 +109,11 @@
   </div>
 
   <div class="resultBlock">
-    <mat-form-field class="unlockKeyText" appearance="outline" color="primary">
-      <mat-label>Fetch Result...</mat-label>
-        <textarea matInput [(ngModel)]="currentResult"></textarea>
+    <mat-form-field class="unlockKeyText" appearance="outline" color="primary" *ngIf="currentResult.text">
+      <mat-label></mat-label>
+        <textarea matInput [(ngModel)]="currentResult.text"></textarea>
     </mat-form-field>
-    <div class="imageBlock">
-      <img [src]="imageURL" alt="image..." width="256" height="256">
-    </div>
+    <img [src]="imageURL" alt="" width="512" height="512" *ngIf="imageURL">
   </div>
 
   <div class="processing" *ngIf="showProgress">
